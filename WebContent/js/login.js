@@ -1,15 +1,17 @@
 function Usuario() {
 
-    this.loguot = function (da) {
+    this.logout = function () {
+    	 var datos = new FormData();
+         datos.append("action", "logout");
         $.ajax({
-            url: "UsuarioControlle",
+            url: "UsuarioServlet",
             type: "POST",
-            data: "action=logout",
-            processData: false,
-            contentType: false,
+            processData: false,  
+            contentType:  false, 
+            data:datos,
             success: function (response) {
                 if (response == "ok") {
-                    location("login.jsp");
+                    location.href="./login.jsp";
                 } else {
                     alert("no se pudo realizar la accion");
                 }
@@ -18,7 +20,7 @@ function Usuario() {
         })
     }
     this.login=function(user,pass){
-        if(userr!=""&& pass)
+        if(user!=""&& pass!="")
     {
         var datos = new FormData();
         datos.append("action", "login");
@@ -26,24 +28,24 @@ function Usuario() {
         datos.append("txtPassword", pass);
     
         $.ajax({
-            url: "UsuarioControlle",
+            url: "UsuarioServlet",
             type: "POST",
             data: datos,
             processData: false,  
             contentType:  false, 
             success: function (response) {
                 if(response=="error"){
-                    error("Usuario o password incorrecto");
+                    notificacion("Usuario o password incorrecto");
                 }else
                 {
-                    location("index.jsp")
+                    location.href="./index.jsp";
                 }
                
             }
         })
     }else
     {
-        error("Complete todos los datos");
+        notificacion("Complete todos los datos");
     }
     }
 }

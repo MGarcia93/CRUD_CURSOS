@@ -4,10 +4,8 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
-
+<title>Administracion Curso</title>
 <jsp:include page="./Vista/head.jsp"></jsp:include>
-
 </head>
 <body>
 <jsp:include page="./Vista/header.jsp"></jsp:include>

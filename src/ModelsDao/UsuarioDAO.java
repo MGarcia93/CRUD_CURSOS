@@ -12,7 +12,6 @@ public class UsuarioDAO {
 	
 	private Connect cn;
 	public UsuarioDAO() {
-		super();
 		cn=new Connect();
 	}
 	
@@ -24,14 +23,14 @@ public class UsuarioDAO {
     		conexion=cn.getConexion();
     		if(conexion!=null) {
     			String query="SELECT usuario,password,tipo FROM usuarios "
-    					+ "WHERE estado=1 && usuario="+usuario+" and password="+pass;
+    					+ "WHERE estado=1 and usuario='"+usuario+"' and password='"+pass+"'";
     			Statement st=conexion.createStatement();
     			ResultSet result=st.executeQuery(query);
     			if(result.next()) {
     				u=new Usuario();
-    				u.setNombre(usuario);
+    				u.setName(usuario);
     				u.setPassword(pass);
-    				u.setTipo(result.getInt("tipo"));
+    				u.setType(result.getInt("tipo"));
     			}
     		}
     		

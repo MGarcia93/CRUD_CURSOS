@@ -1,0 +1,17 @@
+public type method() {
+		Connection conexion;
+		try {
+			cn.conectar();
+			conexion = cn.getConexion();
+			if (conexion != null) {
+				String query="";
+			}
+		}
+		catch(Exception e) {
+			System.out.print(e.getMessage());
+		}
+		finally {
+			cn.desconectar();
+		}
+		return ;
+	}

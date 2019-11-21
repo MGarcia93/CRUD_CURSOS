@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,18 +8,8 @@
     <title>Document</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-        crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-        crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
+
+    <script src="../js/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
         integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
         crossorigin="anonymous"></script>
@@ -28,12 +17,29 @@
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
     <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script type="text/javascript" charset="utf8"
+        src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#tabla-notas').DataTable({
+                dom: 'Bfrtip',
+                buttons: [
+                    'copy', 'excel', 'pdf'
+                ]
+            });
+        })
+    </script>
+
 </head>
 
 <body>
     <header>
-            <h1> CRUD CURSOS</h1>
+        <h1> CRUD CURSOS</h1>
     </header>
     <aside>
         <i class="icon icon-courses"></i>
@@ -42,49 +48,79 @@
         <i class="icon icon-logout"></i>
     </aside>
     <main>
-
-        <div class="table-responsive col-lg-8 center">
-            <table class="table tabla-notas">
-                <caption>
-                    <div class="row">
-                            <div class="col-xs-8 col-md-8 col-lg-8">
-                                    <h2> Asignar notas</h2>
-                            </div>
-                            <div class="col-xs-4 col-md-4 col-lg-4" style="text-align: right;">
-                                    <button class="btn btn-success">Guardar</button>
-                            </div>
+        <div class="row"></div>
+        <form action="EstadisticaCurso.jsp" method="GET" class="col-md-12">
+            <fieldset class="col-md-10 center">
+                <legend>Filtros</legend>
+                <div class="row">
+                    <div class="col-lg-3 col-md-6">
+                        <label for="desde" class="col-lg-4">Desde:</label>
+                        <input type="date" name="desde" id="desde" min="2000-01-01" class="col-lg-7">
                     </div>
-                    
-                    
-                </caption>
+                    <div class="col-lg-3 col-md-6">
+                        <label for="hasta" class="col-lg-4">Hasta:</label>
+                        <input type="date" name="hasta" id="hasta" max="2025-01-02" class="col-lg-7">
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <label for="materia" class="col-lg-4">Materia:</label>
+                        <select name="materia" id="materia" class="col-lg-7">
+                            <option>
+
+                            </option>
+                        </select>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <label for="docente" class="col-lg-4">Docente:</label>
+                        <select name="docente" id="docente" class="col-lg-7">
+                            <option>
+
+                            </option>
+                        </select>
+                    </div>
+                    <div class="col-2 center" style="text-align: right;">
+                        <button type="submit" class="btn btn-primary">Filtrar</button>
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+        </div>
+
+
+        <div class="table-responsive col-lg-10 center">
+            <table class="table tabla-notas display" id="tabla-notas" data-page-length='25'>
+
                 <thead>
                     <tr>
-                        <th scope="col">Alumno</th>
-                        <th scope="col" class="celda-nota">Primer Parcial</th>
-                        <th scope="col" class="celda-nota"> Segundo Parcial</th>
-                        <th scope="col" class="celda-nota">Primer Recuperatorio</th>
-                        <th scope="col" class="celda-nota">Segundo Recuperatorio</th>
-                        <th scope="col">Estado</th>
+                        <th scope="col">Curso</th>
+                        <th scope="col">Materia</th>
+                        <th scope="col">Materia</th>
+                        <th scope="col"> A&ntilde;o</th>
+                        <th scope="col">semestre</th>
+                        <th scope="col">% Aprobados</th>
+                        <th scope="col">Promedio</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr scope="row">
                         <td>
+                            <input type="text" data-object="legajo" readonly value="2000" class="celda-legajo">
+                        </td>
+                        <td>
                             <input type="hidden" data-object="alumno" value="2">
                             Garcia Maximiliano</td>
                         <td class="celda-nota">
-                            <input type="text"  data-object="parcial-1" value="0">
+                            <input type="text" data-object="parcial-1" value="0">
                         </td>
                         <td class="celda-nota">
-                            <input type="text"  data-object="parcial-2" value="0">
+                            <input type="text" data-object="parcial-2" value="0">
                         </td>
                         <td class="celda-nota">
-                            <input type="text"  data-object="Recuperatio-1" value="0">
+                            <input type="text" data-object="Recuperatio-1" value="0">
                         </td>
                         <td class="celda-nota">
-                            <input type="text"  data-object="Recuperatio-2" value="0">
+                            <input type="text" data-object="Recuperatio-2" value="0">
                         </td>
-                        <td> 
+                        <td>
                             <select name="estado" data-object="Estado">
                                 <option value="1">libre</option>
                                 <option value="2">regular </option>
@@ -92,148 +128,25 @@
                         </td>
                     </tr>
                     <tr scope="row">
-                            <td>
-                                <input type="hidden" data-object="alumno" value="2">
-                                Garcia Maximiliano</td>
-                            <td class="celda-nota">
-                                <input type="text"  data-object="parcial-1" value="0">
-                            </td>
-                            <td class="celda-nota">
-                                <input type="text"  data-object="parcial-2" value="0">
-                            </td>
-                            <td class="celda-nota">
-                                <input type="text"  data-object="Recuperatio-1" value="0">
-                            </td>
-                            <td class="celda-nota">
-                                <input type="text"  data-object="Recuperatio-2" value="0">
-                            </td>
-                            <td class="celda-estado"> 
-                                <select name="estado" data-object="Estado">
-                                    <option value="1">libre</option>
-                                    <option value="2">regular </option>
-                                </select>
-                            </td>
-                        </tr>
-                        <tr scope="row">
-                                <td>
-                                    <input type="hidden" data-object="alumno" value="2">
-                                    Garcia Maximiliano</td>
-                                <td class="celda-nota">
-                                    <input type="text"  data-object="parcial-1" value="0">
-                                </td>
-                                <td class="celda-nota">
-                                    <input type="text"  data-object="parcial-2" value="0">
-                                </td>
-                                <td class="celda-nota">
-                                    <input type="text"  data-object="Recuperatio-1" value="0">
-                                </td>
-                                <td class="celda-nota">
-                                    <input type="text"  data-object="Recuperatio-2" value="0">
-                                </td>
-                                <td> 
-                                    <select name="estado" data-object="Estado">
-                                        <option value="1">libre</option>
-                                        <option value="2">regular </option>
-                                    </select>
-                                </td>
-                            </tr>
-
-                </tbody>
-            </table>
-        </div>
-    </main>
-    <footer>
-
-    </footer>
-</body>
-
-=======
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-        crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-        crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-        crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-        crossorigin="anonymous"></script>
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="../css/style.css">
-</head>
-
-<body>
-    <header>
-            <h1> CRUD CURSOS</h1>
-    </header>
-    <aside>
-        <i class="icon icon-courses"></i>
-        <i class="icon icon-teacher"></i>
-        <i class="icon icon-student"></i>
-        <i class="icon icon-logout"></i>
-    </aside>
-    <main>
-
-        <div class="table-responsive col-lg-8 center">
-            <table class="table tabla-notas">
-                <caption>
-                    <div class="row">
-                            <div class="col-xs-8 col-md-8 col-lg-8">
-                                    <h2> Asignar notas</h2>
-                            </div>
-                            <div class="col-xs-4 col-md-4 col-lg-4" style="text-align: right;">
-                                    <button class="btn btn-success">Guardar</button>
-                            </div>
-                    </div>
-                    
-                    
-                </caption>
-                <thead>
-                    <tr>
-                        <th scope="col">Alumno</th>
-                        <th scope="col" class="celda-nota">Primer Parcial</th>
-                        <th scope="col" class="celda-nota"> Segundo Parcial</th>
-                        <th scope="col" class="celda-nota">Primer Recuperatorio</th>
-                        <th scope="col" class="celda-nota">Segundo Recuperatorio</th>
-                        <th scope="col">Estado</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr scope="row">
+                        <td>
+                            <input type="text" readonly value="2000" class="celda-legajo">
+                        </td>
                         <td>
                             <input type="hidden" data-object="alumno" value="2">
                             Garcia Maximiliano</td>
                         <td class="celda-nota">
-                            <input type="text"  data-object="parcial-1" value="0">
+                            <input type="text" data-object="parcial-1" value="0">
                         </td>
                         <td class="celda-nota">
-                            <input type="text"  data-object="parcial-2" value="0">
+                            <input type="text" data-object="parcial-2" value="0">
                         </td>
                         <td class="celda-nota">
-                            <input type="text"  data-object="Recuperatio-1" value="0">
+                            <input type="text" data-object="Recuperatio-1" value="0">
                         </td>
                         <td class="celda-nota">
-                            <input type="text"  data-object="Recuperatio-2" value="0">
+                            <input type="text" data-object="Recuperatio-2" value="0">
                         </td>
-                        <td> 
+                        <td class="celda-estado">
                             <select name="estado" data-object="Estado">
                                 <option value="1">libre</option>
                                 <option value="2">regular </option>
@@ -241,60 +154,145 @@
                         </td>
                     </tr>
                     <tr scope="row">
-                            <td>
-                                <input type="hidden" data-object="alumno" value="2">
-                                Garcia Maximiliano</td>
-                            <td class="celda-nota">
-                                <input type="text"  data-object="parcial-1" value="0">
-                            </td>
-                            <td class="celda-nota">
-                                <input type="text"  data-object="parcial-2" value="0">
-                            </td>
-                            <td class="celda-nota">
-                                <input type="text"  data-object="Recuperatio-1" value="0">
-                            </td>
-                            <td class="celda-nota">
-                                <input type="text"  data-object="Recuperatio-2" value="0">
-                            </td>
-                            <td class="celda-estado"> 
-                                <select name="estado" data-object="Estado">
-                                    <option value="1">libre</option>
-                                    <option value="2">regular </option>
-                                </select>
-                            </td>
-                        </tr>
-                        <tr scope="row">
-                                <td>
-                                    <input type="hidden" data-object="alumno" value="2">
-                                    Garcia Maximiliano</td>
-                                <td class="celda-nota">
-                                    <input type="text"  data-object="parcial-1" value="0">
-                                </td>
-                                <td class="celda-nota">
-                                    <input type="text"  data-object="parcial-2" value="0">
-                                </td>
-                                <td class="celda-nota">
-                                    <input type="text"  data-object="Recuperatio-1" value="0">
-                                </td>
-                                <td class="celda-nota">
-                                    <input type="text"  data-object="Recuperatio-2" value="0">
-                                </td>
-                                <td> 
-                                    <select name="estado" data-object="Estado">
-                                        <option value="1">libre</option>
-                                        <option value="2">regular </option>
-                                    </select>
-                                </td>
-                            </tr>
+                        <td>
+                            <input type="text" readonly value="2000" class="celda-legajo">
+                        </td>
+                        <td>
+                            <input type="hidden" data-object="alumno" value="2">
+                            Garcia Maximiliano</td>
+                        <td class="celda-nota">
+                            <input type="text" data-object="parcial-1" value="0">
+                        </td>
+                        <td class="celda-nota">
+                            <input type="text" data-object="parcial-2" value="0">
+                        </td>
+                        <td class="celda-nota">
+                            <input type="text" data-object="Recuperatio-1" value="0">
+                        </td>
+                        <td class="celda-nota">
+                            <input type="text" data-object="Recuperatio-2" value="0">
+                        </td>
+                        <td>
+                            <select name="estado" data-object="Estado">
+                                <option value="1">libre</option>
+                                <option value="2">regular </option>
+                            </select>
+                        </td>
+                    </tr>
 
                 </tbody>
             </table>
         </div>
+        <div class="modal fade" tabindex="-1" id="modalAgregarPersona" role="dialog"
+            aria-labelledby="modalAgregarPersona" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Agregar</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form method="get" action="">
+                            <div class="form-group group-inline">
+                                <label for="txtNombre" class=" col-md-3">Nombre</label>
+                                <input id="txtNombre" class="form-control  col-md-8" type="text" name="txtNombre">
+                            </div>
+                            <div class="form-group group-inline">
+                                <label for="txtApellido" class=" col-md-3">Apellido</label>
+                                <input id="txtApellido" class="form-control  col-md-8" type="text" name="txtApellido">
+                            </div>
+                            <div class="form-group group-inline">
+                                <label for="txtFechaNac" class=" col-md-3">Fecha Nacimiento</label>
+                                <input id="txtFechaNac" class="form-control  col-md-8" type="text" name="txtFechaNac">
+                            </div>
+                            <div class="form-group group-inline">
+                                <label for="txtDireccion" class=" col-md-3">Direccion</label>
+                                <input id="txtDireccion" class="form-control  col-md-8" type="text" name="txtDireccion">
+                            </div>
+                            <div class="form-group group-inline">
+                                <label for="txtLocalidad" class=" col-md-3">Localidad</label>
+                                <input id="txtLocalidad" class="form-control  col-md-8" type="text" name="txtLocalidad">
+                            </div>
+                            <div class="form-group group-inline">
+                                <label for="txtProvincia" class=" col-md-3">Provincia</label>
+                                <input id="txtProvincia" class="form-control  col-md-8" type="text" name="txtProvincia">
+                            </div>
+                            <div class="form-group group-inline">
+                                <label for="txtEmail" class=" col-md-3">Email</label>
+                                <input id="txtEmail" class="form-control  col-md-8" type="mail" name="txtEmail">
+                            </div>
+                            <div class="form-group group-inline">
+                                <label for="txtTelefono" class=" col-md-3">Telefono</label>
+                                <input id="txtTelefono" class="form-control  col-md-8" type="text" name="txtTelefono">
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" id="savePersona">Agregar</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" tabindex="-1" id="agregarPersona" role="dialog" aria-labelledby="agregarPersona"
+            aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Agregar</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form method="get" action="">
+                            <div class="form-group group-inline">
+                                <label for="txtNombre" class=" col-md-3">Nombre</label>
+                                <input id="txtNombre" class="form-control  col-md-8" type="text" name="txtNombre">
+                            </div>
+                            <div class="form-group group-inline">
+                                <label for="txtApellido" class=" col-md-3">Apellido</label>
+                                <input id="txtApellido" class="form-control  col-md-8" type="text" name="txtApellido">
+                            </div>
+                            <div class="form-group group-inline">
+                                <label for="txtFechaNac" class=" col-md-3">Fecha Nacimiento</label>
+                                <input id="txtFechaNac" class="form-control  col-md-8" type="text" name="txtFechaNac">
+                            </div>
+                            <div class="form-group group-inline">
+                                <label for="txtDireccion" class=" col-md-3">Direccion</label>
+                                <input id="txtDireccion" class="form-control  col-md-8" type="text" name="txtDireccion">
+                            </div>
+                            <div class="form-group group-inline">
+                                <label for="txtLocalidad" class=" col-md-3">Localidad</label>
+                                <input id="txtLocalidad" class="form-control  col-md-8" type="text" name="txtLocalidad">
+                            </div>
+                            <div class="form-group group-inline">
+                                <label for="txtProvincia" class=" col-md-3">Provincia</label>
+                                <input id="txtProvincia" class="form-control  col-md-8" type="text" name="txtProvincia">
+                            </div>
+                            <div class="form-group group-inline">
+                                <label for="txtEmail" class=" col-md-3">Email</label>
+                                <input id="txtEmail" class="form-control  col-md-8" type="mail" name="txtEmail">
+                            </div>
+                            <div class="form-group group-inline">
+                                <label for="txtTelefono" class=" col-md-3">Telefono</label>
+                                <input id="txtTelefono" class="form-control  col-md-8" type="text" name="txtTelefono">
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" id="savePersona">Agregar</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </main>
     <footer>
 
     </footer>
 </body>
-
->>>>>>> 46703a2d65eb38fc525f316c5b5cf9389af2c299
-</html>
