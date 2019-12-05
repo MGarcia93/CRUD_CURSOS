@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"	
 	pageEncoding="ISO-8859-1"%>
 <%@ page import="java.util.ArrayList"%>
 <%@ page import="ModelsDao.DocenteDAO"%>
@@ -31,7 +31,7 @@
 	<main> 
 	<h1>Estadisticas Sobre Docentes</h1>
 		<div>
-            <form action="estadisticaDocente.jsp" method="GET" class="col-md-12">
+            <form onsubmit="SendParameters(this,event)" method="GET" class="col-md-12">
                 <fieldset class="col-md-10 center">
                     <legend>Filtros</legend>
                     <div class="row">
@@ -101,7 +101,7 @@
                     	<%=ed.getCantidadCursos()%> </p> 
                     </td>
                     <td><%=ed.getPromedioAlumno()%> </td>
-                    <td><%=ed.getPromedioNota()%> </td>
+                    <td><%=String.format("%.2f", ed.getPromedioNota())%> </td>
                     <td><%=ed.getPorncentaAprobado()%> </td>
                     </tr>
 				<%}} %>
@@ -146,6 +146,23 @@
 	</div>
 	</main>
 	
+	<script>
+		function SendParameters(_this,event){
+			event.preventDefault();
+			let param="";
+			if (_this.elements['desde'].value!=""){
+				param+="?esde="+_this.elements['desde'].value;
+			}
+			if(_this.elements["hasta"].value!=""){
+				param+=(param!=""?"&":"?")+"hasta="+_this.elements['hasta'].value;
+			}
+			if(_this.elements["materia"].value!=""){
+				param+=(param!=""?"&":"?")+"materia="+_this.elements['materia'].value;
+			}
+			location.href=location.origin+location.pathname+param;
+			
+		}
+	</script>
 	<script src="./js/persona.js"></script>
 	<jsp:include page="./Vista/footer.jsp"></jsp:include>
 	

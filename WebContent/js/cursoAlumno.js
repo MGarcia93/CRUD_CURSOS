@@ -127,6 +127,7 @@ function cursoAlumno(curso){
         tabla.setAttribute("id","ListaAlumnos");
         tabla.appendChild(thead);
         tabla.appendChild(tbody);
+        tabla.setAttribute('data-page-length','6');
         return tabla;
 
     }

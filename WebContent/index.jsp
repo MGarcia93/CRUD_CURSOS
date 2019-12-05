@@ -30,6 +30,17 @@ String tipo=session.getAttribute("Tipo").toString();
 
                 </a>
             </div>
+            <div class="btn-option">
+                <a href="./alumno.jsp" class="btn-link">
+                    <div class="btn-icon">
+                        <img src="./img/alumno-color.svg" alt="">
+                    </div>
+                    <div class="btn-text">
+                        <p>Alumnos</p>
+                    </div>
+
+                </a>
+            </div>
            <%if (tipo.equals("0")) {%>
             <div class="btn-option">
                 <a href="./docente.jsp" class="btn-link">
@@ -38,18 +49,6 @@ String tipo=session.getAttribute("Tipo").toString();
                     </div>
                     <div class="btn-text">
                         <p>Docentes</p>
-                    </div>
-
-                </a>
-            </div>
-            <%} %>
-            <div class="btn-option">
-                <a href="./alumno.jsp" class="btn-link">
-                    <div class="btn-icon">
-                        <img src="./img/alumno-color.svg" alt="">
-                    </div>
-                    <div class="btn-text">
-                        <p>Alumnos</p>
                     </div>
 
                 </a>
@@ -65,6 +64,9 @@ String tipo=session.getAttribute("Tipo").toString();
 
                 </a>
             </div>
+            <%} %>
+            
+            
             <div class="btn-option" >
                 <a href="" class="btn-link" id="logout" data-action="logout">
                     <div class="btn-icon">

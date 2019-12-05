@@ -81,13 +81,13 @@ public class Notas {
 		else {
 			nota+=this.segundoParcial;
 		}
-		float promedio=nota/cantNota;
-		return Math.round(nota/cantNota);
+		float promedio=(float)nota/cantNota;
+		return Math.round(promedio);
 	}
 	
 	public boolean aprobo() {
 		boolean aprobo=false;
-		if(estado!=2 && this.getPromedio()>=6) {
+		if(estado!=1 && this.getPromedio()>=6) {
 			aprobo=true;
 		}
 		return aprobo;

@@ -7,7 +7,7 @@ public class Connect {
 	private  String nameDB="ADM_CURSOS";
 	private  String host="jdbc:mysql://localhost:3306/"+nameDB+"?useSSL=false&useLegacyDatetimeCode=false&serverTimezone=UTC";
 	private  String user="root";
-	private  String pass="admin";
+	private  String pass="";
 	private  Connection conexion=null;
 	
 	public Connect() {

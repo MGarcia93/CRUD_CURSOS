@@ -15,24 +15,24 @@ public class EstadisticaDocente extends Docente{
 	public int getCantidadCursos() {
 		return this.getCursos().size();
 	}
-	public int getPromedioNota() {
-		int sumaPromedios=0;
+	public float getPromedioNota() {
+		float sumaPromedios=0;
 		for(Curso c: this.getCursos()) {
 			sumaPromedios+=c.getPromedio();
 		}
 		float promedio= (float)sumaPromedios/this.getCantidadCursos();
-		return Math.round(promedio);
+		return promedio;
 	}
 
 	public int getPorncentaAprobado() {
-		int sumaprobados=0;
-		int totalAlumnos=0;
+		float sumaprobados=0;
+		float totalAlumnos=0;
 		for(Curso c: this.getCursos()) {
-			sumaprobados+=c.getCantdidadAlumno()*c.getPorcentajeAprobados()/100;
-			totalAlumnos+=c.getCantdidadAlumno();
+			sumaprobados+=c.GetTotalRegular()*c.getPorcentajeAprobados()/100;
+			totalAlumnos+=c.GetTotalRegular();
 		}
-		float porcentaje=(float)sumaprobados/totalAlumnos;
-		return Math.round(porcentaje*100);
+		float porcentaje=(float)sumaprobados/totalAlumnos*100;
+		return Math.round(porcentaje);
 	}
 
 	public EstadisticaDocente() {

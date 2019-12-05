@@ -38,7 +38,7 @@ public class EstadisticaController {
 				where+= (where.equals("")?" ":" AND ")+ " id_materia=" +request.getParameter("materia");
 			}
 			if(request.getParameter("docente")!=null && !request.getParameter("docente").equals("")) {
-				where+= (where.equals(" ")?"":" AND ")+ " id_docente=" +request.getParameter("docente");
+				where+= (where.equals("")?"":" AND ")+ " id_docente=" +request.getParameter("docente");
 			}
 			lista= cDao.FindCurso(where,true);
 			lista =this.OrdenarCursos(lista, "promedio");

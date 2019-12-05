@@ -32,7 +32,7 @@
 	<main> 
 	<h1>Estadisticas Sobre Curso</h1>
 		<div>
-            <form action="estadisticaCurso.jsp" method="GET" class="col-md-12">
+            <form  onsubmit="SendParameters(this,event)" method="GET" class="col-md-12">
                 <fieldset class="col-md-10 center">
                     <legend>Filtros</legend>
                     <div class="row">
@@ -68,7 +68,7 @@
                             </select>
                         </div>
                         <div class="col-2 center" style="text-align: right;">
-                            <button type="submit" class="btn btn-block btn-primary">Filtrar</button>
+                            <button type="submit"  class="btn btn-block btn-primary">Filtrar</button>
                         </div>
                     </div>
                 </fieldset>
@@ -102,7 +102,7 @@
                     <td><%=c.getSemestre()%> </td>
                     <td><%=c.getDocente().getNombre() + " "+ c.getDocente().getApellido()%> </td>
                     <td><%=c.getPorcentajeAprobados()%> </td>
-                    <td><%=c.getPromedio()%> </td>
+                    <td><%=String.format("%.2f",c.getPromedio())%> </td>
                     </tr>
 				<%}} %>
                 </tbody>
@@ -111,7 +111,23 @@
 
         </div>
 	</main>
-	<script src="./js/persona.js"></script>
+	<script>
+		function SendParameters(_this,event){
+			event.preventDefault();
+			let param="";
+			if (_this.elements['desde'].value!=""){
+				param+="?esde="+_this.elements['desde'].value;
+			}
+			if(_this.elements["hasta"].value!=""){
+				param+=(param!=""?"&":"?")+"hasta="+_this.elements['hasta'].value;
+			}
+			if(_this.elements["docente"].value!=""){
+				param+=(param!=""?"&":"?")+"docente="+_this.elements['docente'].value;
+			}
+			location.href=location.origin+location.pathname+param;
+			
+		}
+	</script>
 	<jsp:include page="./Vista/footer.jsp"></jsp:include>
 	
 	<script>

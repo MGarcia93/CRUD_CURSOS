@@ -78,7 +78,7 @@
 					value="<%=a.getNotas().getPrimerRecuperatorio()%>"></td>
 				<td class="celda-nota"><input type="number" min=0 max=10 required
 					data-object="Recuperatio-2"
-					value="<%=a.getNotas().getPrimerRecuperatorio()%>"></td>
+					value="<%=a.getNotas().getSegundoRecuperatorio()%>"></td>
 				<td><select name="estado" data-object="Estado">
 						<option value="1" <%if (a.getNotas().getEstado() == 1) {%>
 							selected <%}%>>libre</option>

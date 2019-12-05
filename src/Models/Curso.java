@@ -58,19 +58,31 @@ public class Curso {
 	}
 	
 	
-	public int getPromedio() {
+	public float getPromedio() {
 		int cantAlumnos=0;
 		int sumaPromedios=0;
 		float promedio=0;
 		for(Alumno a : this.getAlumnos()) {
-			sumaPromedios+=a.getNotas().getPromedio();
-			cantAlumnos++;
+			if(a.getNotas().getEstado()!=1) {
+				sumaPromedios+=a.getNotas().getPromedio();
+				cantAlumnos++;
+			}
 		}
 		if(sumaPromedios!=0) {
 			promedio=(float)sumaPromedios/cantAlumnos;
 		}
-		return  Math.round(promedio);
+		return  promedio;
 		
+	}
+	
+	public int GetTotalRegular() {
+		int total=0;
+		for(Alumno a : this.getAlumnos()) {
+			if(a.getNotas().getEstado()!=1) {
+				total++;
+			}
+		}
+		return total;
 	}
 
 	
@@ -82,10 +94,9 @@ public class Curso {
 			if(a.getNotas().aprobo()==true) {
 				aprobados++;
 			}
-			total++;
 		}
 		if(aprobados!=0) {
-			porcentaje=(float)aprobados/total;
+			porcentaje=(float)aprobados/this.GetTotalRegular();
 		}
 		return  Math.round(porcentaje*100);
 	}
